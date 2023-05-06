@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    android:padding="15dp"
+
+
+    android:background="@color/AcademicCyan"
+
+    android:gravity="center"
+
+
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="70dp"
+
+
+        android:text="@string/Title"
+        android:textAlignment="center"
+        android:textSize="30sp" />
+
+    <ImageView
+        android:id="@+id/Flag"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+
+        android:layout_below="@id/Title"
+        android:layout_centerHorizontal="true"
+
+        app:srcCompat="@drawable/win" />
+
+    <TextView
+        android:id="@+id/Score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/Flag"
+        android:layout_marginTop="10dp"
+
+        android:text="Score: "
+        android:textAlignment="center"
+        android:textSize="35sp"
+        />
+
+    <LinearLayout
+        android:id="@+id/Layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        android:layout_above="@id/Layout2"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/Button1"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/AcademicGreen"
+            android:text="@string/DefaultButtons"
+
+            android:textColor="@color/black"></Button>
+
+        <Button
+            android:id="@+id/Button2"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/AcademicGreen"
+            android:text="@string/DefaultButtons"
+
+            android:textColor="@color/black"></Button>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        android:layout_above="@id/imageView"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/Button3"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/AcademicGreen"
+            android:text="@string/DefaultButtons"
+
+            android:textColor="@color/black"></Button>
+
+        <Button
+            android:id="@+id/Button4"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/AcademicGreen"
+            android:onClick="checkAndContinue"
+
+            android:text="@string/DefaultButtons"
+
+            android:textColor="@color/black"></Button>
+
+    </LinearLayout>
+
+
+
+
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:contentDescription="Birzeit Logo"
+
+        android:layout_height="145dp"
+        android:layout_alignParentBottom="true"
+
+        android:layout_marginTop="55dp"
+        app:srcCompat="@drawable/birzeit_logo" />
+
+
+</RelativeLayout>
+
