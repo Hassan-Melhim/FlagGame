@@ -48,6 +48,18 @@ public class MainActivity extends AppCompatActivity {
                 "Macedonia", "Mozambique", "Montenegro"));
         list.add(new Question(R.drawable.mozambique, "Morocco", "Mozambique",
                 "Macedonia", "Montenegro", "Mozambique"));
+        list.add(new Question(R.drawable.sri_lanka, "San Marino", "Sri Lanka",
+                "Bhutan", "Brunei", "Sri Lanka"));
+        list.add(new Question(R.drawable.chile, "Chile", "Puerto Rico",
+                "Cuba", "Panama", "Chile"));
+        list.add(new Question(R.drawable.comoros, "Cameroon", "Djibouti",
+                "Comoros", "Togo", "Comoros"));
+        list.add(new Question(R.drawable.el_salvador, "Nicaragua", "Guatemala",
+                "Beliz", "El Salvador", "El Salvador"));
+        list.add(new Question(R.drawable.estonia, "Estonia", "Latvia",
+                "Lithuania", "Belarus", "Estonia"));
+        list.add(new Question(R.drawable.fiji, "Palau", "Tuvalu",
+                "Fiji", "Kiribati", "Fiji"));
 
         runTest();
     }
@@ -131,6 +143,16 @@ public class MainActivity extends AppCompatActivity {
                     btn3.setText("Yaaaaaa");
                     btn4.setText("aaaaaaaY");
                 }
+
+                else if(score <= -100){//win condition reached
+                    scoreFeild.setText("Try Again :(");
+                    flag.setImageResource(R.drawable.loss);
+                    btn1.setText("Loooo");
+                    btn2.setText("ooser");
+                    btn3.setText("Booooo");
+                    btn4.setText("hooooo");
+                }
+
                 else{
                     //enable button clicks again
                     btn1.setEnabled(true);
