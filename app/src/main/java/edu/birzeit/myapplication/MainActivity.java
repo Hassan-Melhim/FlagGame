@@ -27,6 +27,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
+    TextView scoreField;
     int score, index;
 
     ArrayList <Question> list = new ArrayList();
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Initializing variables
         recyclerView = findViewById(R.id.recyclerview);
+        scoreField = findViewById(R.id.Score);
 
         score = 0;
         index = 0;
@@ -55,9 +57,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new Adapter(this, this.list));
 
-
-
-
         runTest();
     }
 
@@ -66,27 +65,37 @@ public class MainActivity extends AppCompatActivity {
         Adapter adapter = (Adapter) recyclerView.getAdapter();
         adapter.notifyDataSetChanged();
 
+        score = adapter.getScore();
+        scoreField.setText("Score: " + score);
+
+        if(index >= list.size()){
+            //check if user has ran through the list of questions or not
+            Collections.shuffle(list);
+            index = 0;
+            runTest();
+        }
+
+         if(score > 1000){
+            //win prompt
+            TextView img =(TextView) findViewById(R.id.Title);
+            img.setText("Yay");
+        }
+
+        else if (score < -100){
+            //lose prompt
+            scoreField.setText("loser");
+        }
+
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                index ++;
+
                 if(score <= 1000 || score >= -100){
-                    if(index >= list.size()){
-                        //check if user has ran through the list of questions or not
-                        Collections.shuffle(list);
-                        index = 0;
-                        runTest();
-                    }
-                }
-                else if(score > 1000){
-                    //win prompt
+
                 }
 
-                else if (score < -100){
-                    //lose prompt
-                }
-
+                runTest();
             }
         }, 2000);
     }
