@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -70,115 +71,43 @@ public class MainActivity extends AppCompatActivity {
         list.add(new Question(R.drawable.fiji, "Palau", "Tuvalu",
                 "Fiji", "Kiribati", "Fiji"));
 
+        //save mock up data
+        saveQuestions(this, this.list);
 
         //RecylerView
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new Adapter(getApplicationContext(), this.list));
 
+        //load data
+        //this.list = loadQuestions(this);
 
 
-        runTest();
-    }
-    public void runTest (){
-        //choosing flag at random
-       int random = (int)(Math.random() * this.list.size());
-
-       //presenting score
-        scoreFeild.setText("Score: " + score);
-
-       //presenting the randomly generated flag
-       flag.setImageResource(list.get(random).getFlagID());
-       btn1.setText(list.get(random).getOption1());
-       btn2.setText(list.get(random).getOption2());
-       btn3.setText(list.get(random).getOption3());
-       btn4.setText(list.get(random).getOption4());
-
-       //setting up action for the button click
-       btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkAnswer(btn1, list.get(random));
-            }
-        });
-
-       btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkAnswer(btn2, list.get(random));
-            }
-        });
-
-       btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkAnswer(btn3, list.get(random));
-            }
-        });
-
-       btn4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkAnswer(btn4, list.get(random));
-            }
-        });
+        //runTest();
     }
 
-    public void checkAnswer(Button btn, Question question){
-        btn1.setEnabled(false);
-        btn2.setEnabled(false);
-        btn3.setEnabled(false);
-        btn4.setEnabled(false);
+    private static void saveQuestions(Context context, ArrayList<Question> qList){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                "Quiz Question", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(qList);
 
-        if(btn.getText().toString().equals(question.getCorrectAns())){
-            btn.setBackgroundColor(Color.BLUE);
-            this.score += 100;
+        editor.putString("Question List", json);
+        editor.commit();
+    }
+
+    private ArrayList<Question> loadQuestions(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                "Quiz Question", MODE_PRIVATE);
+        String json = sharedPreferences.getString("Question List"
+                , null);
+
+        if (json != null) {
+            Gson gson = new Gson();
+            Type listType = new TypeToken<ArrayList<Question>>() {}.getType();
+            return gson.fromJson(json, listType);
         }
-
-        else{
-            btn.setBackgroundColor(Color.RED);
-            this.score -=50;
-        }
-
-
-        //Delay before going to the next question
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //reset button colours
-                btn1.setBackgroundColor(getResources().getColor(R.color.AcademicGreen));
-                btn2.setBackgroundColor(getResources().getColor(R.color.AcademicGreen));
-                btn3.setBackgroundColor(getResources().getColor(R.color.AcademicGreen));
-                btn4.setBackgroundColor(getResources().getColor(R.color.AcademicGreen));
-
-                if(score >= 1000){//win condition reached
-                    scoreFeild.setText("!!!!!Congrats!!!!!");
-                    flag.setImageResource(R.drawable.win);
-                    btn1.setText("Wooooooo");
-                    btn2.setText("ooooooW");
-                    btn3.setText("Yaaaaaa");
-                    btn4.setText("aaaaaaaY");
-                }
-
-                else if(score <= -100){//win condition reached
-                    scoreFeild.setText("Try Again :(");
-                    flag.setImageResource(R.drawable.loss);
-                    btn1.setText("Loooo");
-                    btn2.setText("ooser");
-                    btn3.setText("Booooo");
-                    btn4.setText("hooooo");
-                }
-
-                else{
-                    //enable button clicks again
-                    btn1.setEnabled(true);
-                    btn2.setEnabled(true);
-                    btn3.setEnabled(true);
-                    btn4.setEnabled(true);
-
-                    runTest();
-                }
-            }
-        }, delayAmount);
+        return null;
     }
+
 }
