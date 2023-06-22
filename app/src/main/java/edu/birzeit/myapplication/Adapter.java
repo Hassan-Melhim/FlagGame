@@ -40,31 +40,20 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
 
         //setting up action events
         holder.opt1.setOnClickListener(view -> {
-              checkAnswer(holder.opt1, current);
+            ViewHolder.checkAnswer(holder.opt1, current);
         });
         holder.opt2.setOnClickListener(view -> {
-            checkAnswer(holder.opt2, current);
+            ViewHolder.checkAnswer(holder.opt2, current);
         });
         holder.opt3.setOnClickListener(view -> {
-            checkAnswer(holder.opt3, current);
+            ViewHolder.checkAnswer(holder.opt3, current);
         });
         holder.opt4.setOnClickListener(view -> {
-            checkAnswer(holder.opt4, current);
+            ViewHolder.checkAnswer(holder.opt4, current);
         });
 
     }
 
-    private void checkAnswer(Button btn, Question question){
-
-        if(btn.getText().toString().equals(question.getCorrectAns())){
-            //this.score += 100;
-        }
-
-        else{
-            btn.setBackgroundColor(Color.RED);
-            //this.score -=50;
-        }
-}
 
     @Override
     public int getItemCount() {
