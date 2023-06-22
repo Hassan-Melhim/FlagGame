@@ -1,7 +1,10 @@
 package edu.birzeit.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -11,6 +14,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -18,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView flag;
     Button btn1,btn2,btn3,btn4;
-    TextView scoreFeild;
+    TextView scoreFeild, title;
     private static final long delayAmount = 1000;
     int score;
     ArrayList <Question> list = new ArrayList();
@@ -29,15 +36,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Initializing variables
-        flag = (ImageView) findViewById(R.id.Flag);
-        btn1 = (Button) findViewById(R.id.Button1);
-        btn2 = (Button) findViewById(R.id.Button2);
-        btn3 = (Button) findViewById(R.id.Button3);
-        btn4 = (Button) findViewById(R.id.Button4);
-        scoreFeild = (TextView) findViewById(R.id.Score);
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        //flag = (ImageView) findViewById(R.id.Flag);
+        //btn1 = (Button) findViewById(R.id.Button1);
+        //btn2 = (Button) findViewById(R.id.Button2);
+        //btn3 = (Button) findViewById(R.id.Button3);
+        //btn4 = (Button) findViewById(R.id.Button4);
+        //scoreFeild = (TextView) findViewById(R.id.Score);
         score = 0;
 
         //Mock-up data
+
         list.add(new Question(R.drawable.andorra,"Angola", "Algeria",
                 "Andorra", "Antigua", "Andorra"));
         list.add(new Question(R.drawable.antigua_barbuda, "Barbados", "Bahamas",
@@ -60,6 +69,13 @@ public class MainActivity extends AppCompatActivity {
                 "Lithuania", "Belarus", "Estonia"));
         list.add(new Question(R.drawable.fiji, "Palau", "Tuvalu",
                 "Fiji", "Kiribati", "Fiji"));
+
+
+        //RecylerView
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new Adapter(getApplicationContext(), this.list));
+
+
 
         runTest();
     }

@@ -2,6 +2,7 @@ package edu.birzeit.myapplication;
 
 import android.widget.ImageView;
 
+
 public class Question {
     private int flagID;
     private String option1;

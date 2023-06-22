@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/Flag"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:id="@+id/Score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/Flag"
+        android:layout_marginTop="10dp"
+
+        android:text="Score: "
+        android:textAlignment="center"
+        android:textSize="35sp"
+        />
+
+    <LinearLayout
+        android:id="@+id/Layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        android:layout_above="@id/Layout2"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/Button1"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/AcademicGreen"
+            android:text="@string/DefaultButtons"
+
+            android:textColor="@color/black"></Button>
+
+        <Button
+            android:id="@+id/Button2"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/AcademicGreen"
+            android:text="@string/DefaultButtons"
+
+            android:textColor="@color/black"></Button>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/Button3"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/AcademicGreen"
+            android:text="@string/DefaultButtons"
+
+            android:textColor="@color/black"></Button>
+
+        <Button
+            android:id="@+id/Button4"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/AcademicGreen"
+            android:onClick="checkAndContinue"
+
+            android:text="@string/DefaultButtons"
+
+            android:textColor="@color/black"></Button>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
